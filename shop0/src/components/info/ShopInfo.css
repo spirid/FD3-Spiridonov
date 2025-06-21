@@ -1,0 +1,38 @@
+.shop-info {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.shop-info:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.shop-title {
+  font-size: 24px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.shop-address {
+  font-size: 16px;
+  color: #7f8c8d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.shop-address::before {
+  content: "📍";
+  font-size: 18px;
+}
