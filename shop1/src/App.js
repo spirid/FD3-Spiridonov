@@ -1,6 +1,5 @@
 import "./App.css";
 import ShopInfo from "./components/ShopInfo/ShopInfo";
-import CardItem from "./components/CardItem/CardItem";
 
 const belarusianPizzas = [
   {
@@ -102,22 +101,11 @@ function App() {
         <h1>Пиццерия</h1>
         <p>Доставка пиццы в Минске</p>
       </header>
-      <div className="pizza-list">
-        {belarusianPizzas.map((pizza) => (
-          <CardItem
-            key={pizza.id}
-            id={pizza.id}
-            name={pizza.name}
-            price={pizza.price}
-            imageUrl={pizza.imageUrl || "https://example.com/images/pizza.jpg"}
-            stock={pizza.stock}
-            description={pizza.description}
-            spicy={pizza.spicy}
-            vegetarian={pizza.vegetarian}
-          />
-        ))}
-      </div>
-      <ShopInfo address="123 Main St" shopName="Anytown" />
+      <ShopInfo
+        address="123 Main St"
+        shopName="Anytown"
+        products={belarusianPizzas}
+      />
     </div>
   );
 }
