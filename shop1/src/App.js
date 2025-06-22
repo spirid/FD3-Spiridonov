@@ -1,5 +1,5 @@
 import "./App.css";
-import ShopInfo from "./components/ShopInfo/ShopInfo";
+import Shop from "./components/Shop/Shop";
 
 const belarusianPizzas = [
   {
@@ -101,7 +101,7 @@ function App() {
         <h1>Пиццерия</h1>
         <p>Доставка пиццы в Минске</p>
       </header>
-      <ShopInfo
+      <Shop
         address="123 Main St"
         shopName="Anytown"
         products={belarusianPizzas}

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import CardItem from "../CardItem/CardItem";
-import "./ShopInfo.css";
+import "./Shop.css";
 
-class ShopInfo extends Component {
+class Shop extends Component {
   render() {
     return (
       <>
@@ -18,8 +18,6 @@ class ShopInfo extends Component {
               }
               stock={pizza.stock}
               description={pizza.description}
-              spicy={pizza.spicy}
-              vegetarian={pizza.vegetarian}
             />
           ))}
         </div>
@@ -32,4 +30,4 @@ class ShopInfo extends Component {
   }
 }
 
-export default ShopInfo;
+export default Shop;
