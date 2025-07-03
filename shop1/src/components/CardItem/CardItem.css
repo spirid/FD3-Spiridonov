@@ -106,3 +106,8 @@
   font-size: 12px;
   font-weight: bold;
 }
+
+.product-card.selected {
+  background-color: #e6f7ff;
+  border: 1px solid #1890ff;
+}

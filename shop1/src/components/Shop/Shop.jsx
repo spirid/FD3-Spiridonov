@@ -15,7 +15,9 @@ class Shop extends Component {
       this.setState({ selectedItemId: id });
     }
     // Если убирать выделение нужно даже если клинкуем на тот же элемент раскоментить этот код
-    // this.setState((prevState) => ({ selectedItemId: prevState.selectedItemId === id ? null : id, }));
+    // this.setState((prevState) => ({
+    //   selectedItemId: prevState.selectedItemId === id ? null : id,
+    // }));
   };
 
   render() {
@@ -23,24 +25,19 @@ class Shop extends Component {
       <>
         <div className="pizza-list">
           {this.props.products.map((pizza) => (
-            <div
+            <CardItem
               key={pizza.id}
+              id={pizza.id}
+              name={pizza.name}
+              price={pizza.price}
+              imageUrl={
+                pizza.imageUrl || "https://example.com/images/pizza.jpg"
+              }
+              stock={pizza.stock}
+              description={pizza.description}
+              isSelected={this.state.selectedItemId === pizza.id}
               onClick={() => this.handleItemClick(pizza.id)}
-              className={`card-wrapper ${
-                this.state.selectedItemId === pizza.id ? "selected" : ""
-              }`}
-            >
-              <CardItem
-                id={pizza.id}
-                name={pizza.name}
-                price={pizza.price}
-                imageUrl={
-                  pizza.imageUrl || "https://example.com/images/pizza.jpg"
-                }
-                stock={pizza.stock}
-                description={pizza.description}
-              />
-            </div>
+            />
           ))}
         </div>
         <div className="shop-info">

@@ -3,10 +3,14 @@ import "./CardItem.css";
 
 class CardItem extends Component {
   render() {
-    const { name, price, imageUrl, stock, description } = this.props;
+    const { name, price, imageUrl, stock, description, isSelected, onClick } =
+      this.props;
 
     return (
-      <div className="product-card">
+      <div
+        className={`product-card ${isSelected ? "selected" : ""}`}
+        onClick={onClick}
+      >
         <img src={imageUrl} alt={name} className="product-image" />
         {stock > 0 ? (
           <div className="product-badge">В наличии: {stock}</div>
