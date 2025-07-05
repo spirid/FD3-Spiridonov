@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./Filter.css";
 
 class Filter extends React.Component {
@@ -7,29 +8,33 @@ class Filter extends React.Component {
     this.state = {
       searchText: "",
       isSorted: false,
+      filteredItems: props.wordsList || [],
     };
-
-    if (!this.props.wordsList) {
-      console.error('Проп "items" обязателен для компонента Filter');
-    }
   }
 
-  handleInputChange = (e) => {
-    this.setState({ searchText: e.target.value });
+  static propTypes = {
+    wordsList: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
-  handleCheckboxChange = (e) => {
-    this.setState({ isSorted: e.target.checked });
+  handleInputChange = ({ target: { value } }) => {
+    this.setState({ searchText: value }, this.updateFilteredItems);
+  };
+
+  handleCheckboxChange = ({ target: { checked } }) => {
+    this.setState({ isSorted: checked }, this.updateFilteredItems);
   };
 
   handleReset = () => {
-    this.setState({
-      searchText: "",
-      isSorted: false,
-    });
+    this.setState(
+      {
+        searchText: "",
+        isSorted: false,
+      },
+      this.updateFilteredItems
+    );
   };
 
-  getFilteredItems() {
+  updateFilteredItems = () => {
     const { wordsList } = this.props;
     const { searchText, isSorted } = this.state;
 
@@ -41,12 +46,11 @@ class Filter extends React.Component {
       filteredItems = [...filteredItems].sort((a, b) => a.localeCompare(b));
     }
 
-    return filteredItems;
-  }
+    this.setState({ filteredItems });
+  };
 
   render() {
-    const { searchText, isSorted } = this.state;
-    const filteredItems = this.getFilteredItems();
+    const { searchText, isSorted, filteredItems } = this.state;
 
     return (
       <div className="filter">
