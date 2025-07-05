@@ -2,21 +2,25 @@ import React, { Component } from "react";
 import "./CardItem.css";
 
 class CardItem extends Component {
+  handleClick = () => {
+    this.props.onClick(this.props.id);
+  };
+
   handleDelete = (e) => {
     e.stopPropagation();
     if (window.confirm("Вы уверены, что хотите удалить этот товар?")) {
-      this.props.onDelete();
+      this.props.onDelete(this.props.id);
     }
   };
 
   render() {
-    const { name, price, imageUrl, stock, description, isSelected, onClick } =
+    const { name, price, imageUrl, stock, description, isSelected } =
       this.props;
 
     return (
       <div
         className={`product-card ${isSelected ? "selected" : ""}`}
-        onClick={onClick}
+        onClick={this.handleClick}
       >
         <img src={imageUrl} alt={name} className="product-image" />
         {stock > 0 ? (

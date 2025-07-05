@@ -29,26 +29,28 @@ class Shop extends Component {
     }));
   };
 
+  renderCardItem = (pizza) => {
+    return (
+      <CardItem
+        key={pizza.id}
+        id={pizza.id}
+        name={pizza.name}
+        price={pizza.price}
+        imageUrl={pizza.imageUrl || "https://example.com/images/pizza.jpg"}
+        stock={pizza.stock}
+        description={pizza.description}
+        isSelected={this.state.selectedItemId === pizza.id}
+        onClick={this.handleItemClick}
+        onDelete={this.handleDeleteItem}
+      />
+    );
+  };
+
   render() {
     return (
       <>
         <div className="pizza-list">
-          {this.state.products.map((pizza) => (
-            <CardItem
-              key={pizza.id}
-              id={pizza.id}
-              name={pizza.name}
-              price={pizza.price}
-              imageUrl={
-                pizza.imageUrl || "https://example.com/images/pizza.jpg"
-              }
-              stock={pizza.stock}
-              description={pizza.description}
-              isSelected={this.state.selectedItemId === pizza.id}
-              onClick={() => this.handleItemClick(pizza.id)}
-              onDelete={() => this.handleDeleteItem(pizza.id)}
-            />
-          ))}
+          {this.state.products.map(this.renderCardItem)}
         </div>
         <div className="shop-info">
           <h2 className="shop-title">{this.props.shopName}</h2>
