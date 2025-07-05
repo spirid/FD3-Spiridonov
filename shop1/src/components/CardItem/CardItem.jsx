@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import "./CardItem.css";
 
 class CardItem extends Component {
+  handleDelete = (e) => {
+    e.stopPropagation();
+    if (window.confirm("Вы уверены, что хотите удалить этот товар?")) {
+      this.props.onDelete();
+    }
+  };
+
   render() {
     const { name, price, imageUrl, stock, description, isSelected, onClick } =
       this.props;
@@ -18,12 +25,15 @@ class CardItem extends Component {
           <div className="product-not-in-stock">Нет в наличии</div>
         )}
         <h3 className="product-title">{name}</h3>
-        <p className="product-description" title={description}>
-          {description}
-        </p>
+        <p className="product-description">{description}</p>
         <div className="product-footer">
           <span className="product-price">{price} BYN</span>
-          <button className="product-button">Заказать</button>
+          <button
+            className="product-button delete-btn"
+            onClick={this.handleDelete}
+          >
+            Удалить
+          </button>
         </div>
       </div>
     );

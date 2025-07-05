@@ -7,6 +7,7 @@ class Shop extends Component {
     super(props);
     this.state = {
       selectedItemId: null,
+      products: props.products,
     };
   }
 
@@ -20,11 +21,19 @@ class Shop extends Component {
     // }));
   };
 
+  handleDeleteItem = (id) => {
+    this.setState((prevState) => ({
+      products: prevState.products.filter((item) => item.id !== id),
+      selectedItemId:
+        prevState.selectedItemId === id ? null : prevState.selectedItemId,
+    }));
+  };
+
   render() {
     return (
       <>
         <div className="pizza-list">
-          {this.props.products.map((pizza) => (
+          {this.state.products.map((pizza) => (
             <CardItem
               key={pizza.id}
               id={pizza.id}
@@ -37,6 +46,7 @@ class Shop extends Component {
               description={pizza.description}
               isSelected={this.state.selectedItemId === pizza.id}
               onClick={() => this.handleItemClick(pizza.id)}
+              onDelete={() => this.handleDeleteItem(pizza.id)}
             />
           ))}
         </div>
