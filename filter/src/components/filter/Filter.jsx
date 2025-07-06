@@ -1,87 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import Controls from "../controls/Controls";
+import List from "../list/List";
 import "./Filter.css";
 
-class Filter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchText: "",
-      isSorted: false,
-      filteredItems: props.wordsList || [],
-    };
-  }
+const Filter = ({ wordsList }) => {
+  const [searchText, setSearchText] = useState("");
+  const [isSorted, setIsSorted] = useState(false);
+  const [filteredItems, setFilteredItems] = useState(wordsList);
 
-  static propTypes = {
-    wordsList: PropTypes.arrayOf(PropTypes.string).isRequired,
-  };
-
-  handleInputChange = ({ target: { value } }) => {
-    this.setState({ searchText: value }, this.updateFilteredItems);
-  };
-
-  handleCheckboxChange = ({ target: { checked } }) => {
-    this.setState({ isSorted: checked }, this.updateFilteredItems);
-  };
-
-  handleReset = () => {
-    this.setState(
-      {
-        searchText: "",
-        isSorted: false,
-      },
-      this.updateFilteredItems
-    );
-  };
-
-  updateFilteredItems = () => {
-    const { wordsList } = this.props;
-    const { searchText, isSorted } = this.state;
-
-    let filteredItems = wordsList.filter((item) =>
+  useEffect(() => {
+    let result = wordsList.filter((item) =>
       item.toLowerCase().includes(searchText.toLowerCase())
     );
 
     if (isSorted) {
-      filteredItems = [...filteredItems].sort((a, b) => a.localeCompare(b));
+      result = [...result].sort((a, b) => a.localeCompare(b));
     }
 
-    this.setState({ filteredItems });
+    setFilteredItems(result);
+  }, [searchText, isSorted, wordsList]);
+
+  const handleInputChange = (e) => {
+    setSearchText(e.target.value);
   };
 
-  render() {
-    const { searchText, isSorted, filteredItems } = this.state;
+  const handleCheckboxChange = (e) => {
+    setIsSorted(e.target.checked);
+  };
 
-    return (
-      <div className="filter">
-        <div className="filter-controls">
-          <input
-            type="text"
-            value={searchText}
-            onChange={this.handleInputChange}
-            placeholder="Введите текст для фильтрации"
-          />
+  const handleReset = () => {
+    setSearchText("");
+    setIsSorted(false);
+  };
 
-          <label>
-            <input
-              type="checkbox"
-              checked={isSorted}
-              onChange={this.handleCheckboxChange}
-            />
-            Сортировать по алфавиту
-          </label>
+  return (
+    <div className="filter">
+      <Controls
+        searchText={searchText}
+        isSorted={isSorted}
+        onInputChange={handleInputChange}
+        onCheckboxChange={handleCheckboxChange}
+        onReset={handleReset}
+      />
+      <List items={filteredItems} />
+    </div>
+  );
+};
 
-          <button onClick={this.handleReset}>Сбросить</button>
-        </div>
-
-        <ul className="items-list">
-          {filteredItems.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
+Filter.propTypes = {
+  wordsList: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default Filter;
