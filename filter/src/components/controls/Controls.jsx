@@ -1,31 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Controls = ({
-  searchText,
-  isSorted,
-  onInputChange,
-  onCheckboxChange,
-  onReset,
-}) => {
-  return (
-    <div className="filter-controls">
-      <input
-        type="text"
-        value={searchText}
-        onChange={onInputChange}
-        placeholder="Введите текст для фильтрации"
-      />
+class Controls extends React.Component {
+  render() {
+    const { searchText, isSorted, onInputChange, onCheckboxChange, onReset } =
+      this.props;
 
-      <label>
-        <input type="checkbox" checked={isSorted} onChange={onCheckboxChange} />
-        Сортировать по алфавиту
-      </label>
+    return (
+      <div className="filter-controls">
+        <input
+          type="text"
+          value={searchText}
+          onChange={onInputChange}
+          placeholder="Введите текст для фильтрации"
+        />
 
-      <button onClick={onReset}>Сбросить</button>
-    </div>
-  );
-};
+        <label>
+          <input
+            type="checkbox"
+            checked={isSorted}
+            onChange={onCheckboxChange}
+          />
+          Сортировать по алфавиту
+        </label>
+
+        <button onClick={onReset}>Сбросить</button>
+      </div>
+    );
+  }
+}
 
 Controls.propTypes = {
   searchText: PropTypes.string.isRequired,
