@@ -18,16 +18,6 @@ class Filter extends React.Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      prevState.searchText !== this.state.searchText ||
-      prevState.isSorted !== this.state.isSorted ||
-      prevProps.wordsList !== this.props.wordsList
-    ) {
-      this.updateFilteredItems();
-    }
-  }
-
   updateFilteredItems = () => {
     const { wordsList } = this.props;
     const { searchText, isSorted } = this.state;
@@ -43,19 +33,22 @@ class Filter extends React.Component {
     this.setState({ filteredItems });
   };
 
-  handleInputChange = (e) => {
-    this.setState({ searchText: e.target.value });
+  handleInputChange = (value) => {
+    this.setState({ searchText: value }, this.updateFilteredItems);
   };
 
-  handleCheckboxChange = (e) => {
-    this.setState({ isSorted: e.target.checked });
+  handleCheckboxChange = (checked) => {
+    this.setState({ isSorted: checked }, this.updateFilteredItems);
   };
 
   handleReset = () => {
-    this.setState({
-      searchText: "",
-      isSorted: false,
-    });
+    this.setState(
+      {
+        searchText: "",
+        isSorted: false,
+      },
+      this.updateFilteredItems
+    );
   };
 
   render() {

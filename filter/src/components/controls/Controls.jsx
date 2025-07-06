@@ -11,7 +11,7 @@ class Controls extends React.Component {
         <input
           type="text"
           value={searchText}
-          onChange={onInputChange}
+          onChange={(e) => onInputChange(e.target.value)}
           placeholder="Введите текст для фильтрации"
         />
 
@@ -19,7 +19,7 @@ class Controls extends React.Component {
           <input
             type="checkbox"
             checked={isSorted}
-            onChange={onCheckboxChange}
+            onChange={(e) => onCheckboxChange(e.target.checked)}
           />
           Сортировать по алфавиту
         </label>
