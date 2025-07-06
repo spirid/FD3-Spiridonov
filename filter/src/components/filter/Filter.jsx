@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Controls from "./Controls";
-import List from "./List";
+import Controls from "../controls/Controls";
+import List from "../list/List";
 import "./Filter.css";
 
 class Filter extends React.Component {
