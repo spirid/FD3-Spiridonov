@@ -1,0 +1,21 @@
+.MobileClient td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.MobileClient.editing td {
+  padding: 4px;
+}
+
+.MobileClient.editing input,
+.MobileClient.editing select {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.MobileClient button {
+  margin: 0 2px;
+  padding: 3px 6px;
+  cursor: pointer;
+}

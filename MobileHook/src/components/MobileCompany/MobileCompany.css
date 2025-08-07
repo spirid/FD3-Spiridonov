@@ -1,0 +1,42 @@
+.MobileCompany {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.MobileCompanyName {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.MobileCompanyFilters {
+  margin-bottom: 20px;
+}
+
+.MobileCompanyFilters button {
+  margin-right: 10px;
+  padding: 5px 10px;
+}
+
+.MobileCompanyClients {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.MobileCompanyClients th,
+.MobileCompanyClients td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.MobileCompanyClients th {
+  background-color: #f2f2f2;
+}
+
+.MobileCompanyAdd button {
+  padding: 5px 10px;
+}
