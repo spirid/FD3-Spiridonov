@@ -1,0 +1,32 @@
+.MobileClient {
+  border-bottom: 1px solid #eee;
+}
+
+.MobileClient td {
+  padding: 8px;
+}
+
+.MobileClient.editing td {
+  padding: 4px;
+}
+
+.MobileClient.editing input,
+.MobileClient.editing select {
+  width: 90%;
+  padding: 4px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.MobileClient button {
+  margin: 0 2px;
+  padding: 4px 8px;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.MobileClient button:hover {
+  background: #e0e0e0;
+}
