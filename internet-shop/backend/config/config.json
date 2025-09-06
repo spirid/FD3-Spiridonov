@@ -1,0 +1,29 @@
+{
+  "development": {
+    "username": "spirid",
+    "password": "spirid",
+    "database": "internet_shop",
+    "host": "localhost",
+    "port": "5433",
+    "dialect": "postgres",
+    "logging": false
+  },
+  "test": {
+    "username": "spirid",
+    "password": "spirid",
+    "database": "internet_shop_test",
+    "host": "localhost",
+    "port": "5433",
+    "dialect": "postgres",
+    "logging": false
+  },
+  "production": {
+    "username": "spirid",
+    "password": "spirid",
+    "database": "internet_shop_prod",
+    "host": "localhost",
+    "port": "5433",
+    "dialect": "postgres",
+    "logging": false
+  }
+}
